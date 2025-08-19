@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # 1. Configurar la clave privada SSH
-      - name: Configurar clave SSH
+      - name: server_devops_uli
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
@@ -21,4 +21,3 @@ jobs:
             cd ~/lemp-sites/ulises_cabrera/repo_prueba_JS &&
             git pull origin main
           "
-
