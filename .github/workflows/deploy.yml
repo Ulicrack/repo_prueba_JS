@@ -2,23 +2,23 @@ name: CD - Deploy con Git Pull
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
+    name: Deploy to Server
     runs-on: ubuntu-latest
+
     steps:
-      # 1. Configurar la clave privada SSH
-      - name: Configurar clave SSH
-        uses: webfactory/ssh-agent@v0.7.0
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # 2. Ejecutar git pull en el servidor
-      - name: Conectarse al servidor y hacer git pull
+      - name: Run Deploy Script
         run: |
-          ssh -o StrictHostKeyChecking=alumno@137.184.127.11"
-            cd ~/lemp-sites/ulises_cabrera/repo_prueba_JS &&
-            git pull origin main
-          "
-
+          ssh -tt -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}
