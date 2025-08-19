@@ -22,6 +22,6 @@ jobs:
       - name: Run Deploy Script
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}"
-            cd ~/lemp-sites/nombre_apellido &&
+            cd ~/lemp-sites/ulises_cabrera/repo_prueba_JS &&
             git pull origin main
           "
